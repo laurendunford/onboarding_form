@@ -8,15 +8,20 @@
 
 /* Success messages with golden accent */
 .stSuccess {
-    background-color: rgba(241, 194, 50, 0.1) !important;
+    background-color: rgba(241, 194, 50, 0.15) !important;
     border-left: 4px solid #F1C232 !important;
-    color: #F1C232 !important;
+    color: #8B4513 !important;
+    padding: 10px !important;
+    border-radius: 4px !important;
 }
 
 /* Info boxes with golden accent */
 .stInfo {
-    background-color: rgba(241, 194, 50, 0.1) !important;
-    border-left: 4px solid #F1C232 !important;
+    background-color: rgba(80, 45, 213, 0.1) !important;
+    border-left: 4px solid #502DD5 !important;
+    color: #502DD5 !important;
+    padding: 10px !important;
+    border-radius: 4px !important;
 }
 
 /* Custom button styling */
@@ -46,11 +51,11 @@
 
 /* Card-like containers */
 .custom-card {
-    background-color: #4A5A6B !important;
+    background-color: #F8F9FA !important;
     border-radius: 12px !important;
     padding: 20px !important;
     margin: 10px 0 !important;
-    border: 1px solid rgba(241, 194, 50, 0.2) !important;
+    border: 1px solid rgba(80, 45, 213, 0.2) !important;
 }
 
 /* Golden border for important sections */
@@ -62,26 +67,26 @@
 
 /* Photo upload area styling */
 .upload-area {
-    border: 2px dashed #F1C232 !important;
+    border: 2px dashed #502DD5 !important;
     border-radius: 8px !important;
     padding: 20px !important;
     text-align: center !important;
-    background-color: rgba(241, 194, 50, 0.05) !important;
+    background-color: rgba(80, 45, 213, 0.05) !important;
 }
 
 /* Machine list styling */
 .machine-item {
-    background-color: #4A5A6B !important;
+    background-color: #F8F9FA !important;
     border-radius: 8px !important;
     padding: 15px !important;
     margin: 8px 0 !important;
-    border-left: 4px solid #F1C232 !important;
+    border-left: 4px solid #502DD5 !important;
 }
 
 /* Form styling */
 .custom-form {
-    background-color: #4A5A6B !important;
+    background-color: #F8F9FA !important;
     border-radius: 12px !important;
     padding: 25px !important;
-    border: 1px solid rgba(241, 194, 50, 0.3) !important;
+    border: 1px solid rgba(80, 45, 213, 0.3) !important;
 } 
