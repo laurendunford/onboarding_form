@@ -35,104 +35,87 @@ with col2:
         st.session_state.machines.append({"type": "", "model": "", "info": "", "quantity": 1})
         st.rerun()
 
-# Machine management (outside the form)
-if st.session_state.machines:
-    st.subheader("Your Machines")
+# Machine editing interface (outside the form)
+if st.session_state.machines and ('editing_machine' in st.session_state and st.session_state.editing_machine is not None):
+    edit_idx = st.session_state.editing_machine
+    machine = st.session_state.machines[edit_idx]
     
-    # Check if we're editing a specific machine
-    if 'editing_machine' in st.session_state and st.session_state.editing_machine is not None:
-        edit_idx = st.session_state.editing_machine
-        machine = st.session_state.machines[edit_idx]
-        
-        st.write(f"**Editing Machine {edit_idx + 1}**")
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            machine["type"] = st.text_input(
-                "Machine Type",
-                value=machine["type"],
-                placeholder="e.g., Lathe, Milling Machine, CNC Router",
-                key=f"edit_type_{edit_idx}"
-            )
-            machine["quantity"] = st.number_input(
-                "Quantity",
-                min_value=1,
-                value=machine["quantity"],
-                key=f"edit_qty_{edit_idx}"
-            )
-        
-        with col2:
-            machine["model"] = st.text_input(
-                "Model",
-                value=machine["model"],
-                placeholder="e.g., Haas VF-2, Bridgeport Series I",
-                key=f"edit_model_{edit_idx}"
-            )
-            machine["info"] = st.text_input(
-                "Additional Info",
-                value=machine["info"],
-                placeholder="Serial number, year, modifications, etc.",
-                key=f"edit_info_{edit_idx}"
-            )
-        
-        # Machine photo upload
-        st.write("**Machine Photo:**")
-        machine["photo"] = st.file_uploader(
-            f"Upload photo of Machine {edit_idx + 1}",
-            type=["jpg", "jpeg", "png"],
-            key=f"machine_photo_{edit_idx}"
+    st.subheader(f"Editing Machine {edit_idx + 1}")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        machine["type"] = st.text_input(
+            "Machine Type",
+            value=machine["type"],
+            placeholder="e.g., Lathe, Milling Machine, CNC Router",
+            key=f"edit_type_{edit_idx}"
         )
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("✅ Save Changes", key=f"save_{edit_idx}"):
-                st.success(f"Machine {edit_idx + 1} updated!")
-                st.session_state.editing_machine = None
-                st.rerun()
-        with col2:
-            if st.button("❌ Cancel", key=f"cancel_{edit_idx}"):
-                st.session_state.editing_machine = None
-                st.rerun()
+        machine["quantity"] = st.number_input(
+            "Quantity",
+            min_value=1,
+            value=machine["quantity"],
+            key=f"edit_qty_{edit_idx}"
+        )
     
-    else:
-        # Show machine list with edit/remove options
-        for i, machine in enumerate(st.session_state.machines):
-            col1, col2, col3 = st.columns([3, 1, 1])
-            with col1:
-                machine_display = f"**Machine {i+1}**: {machine['type']}"
-                if machine['model']:
-                    machine_display += f" ({machine['model']})"
-                machine_display += f" - Qty: {machine['quantity']}"
-                if machine['info']:
-                    machine_display += f" - {machine['info']}"
-                if machine.get('photo'):
-                    machine_display += " 📸"
-                st.write(machine_display)
-            with col2:
-                if st.button(f"Edit {i+1}", key=f"edit_{i}"):
-                    st.session_state.editing_machine = i
-                    st.rerun()
-            with col3:
-                if st.button(f"Remove {i+1}", key=f"remove_{i}"):
-                    st.session_state.machines.pop(i)
-                    st.rerun()
+    with col2:
+        machine["model"] = st.text_input(
+            "Model",
+            value=machine["model"],
+            placeholder="e.g., Haas VF-2, Bridgeport Series I",
+            key=f"edit_model_{edit_idx}"
+        )
+        machine["info"] = st.text_input(
+            "Additional Info",
+            value=machine["info"],
+            placeholder="Serial number, year, modifications, etc.",
+            key=f"edit_info_{edit_idx}"
+        )
+    
+    # Machine photo upload
+    st.write("**Machine Photo:**")
+    machine["photo"] = st.file_uploader(
+        f"Upload photo of Machine {edit_idx + 1}",
+        type=["jpg", "jpeg", "png"],
+        key=f"machine_photo_{edit_idx}"
+    )
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("✅ Save Changes", key=f"save_{edit_idx}"):
+            st.success(f"Machine {edit_idx + 1} updated!")
+            st.session_state.editing_machine = None
+            st.rerun()
+    with col2:
+        if st.button("❌ Cancel", key=f"cancel_{edit_idx}"):
+            st.session_state.editing_machine = None
+            st.rerun()
 
 with st.form(key="onboarding_form"):
     st.header("Machine Information")
     
-    # Show machine summary
+    # Show machine summary with edit/remove options
     if st.session_state.machines:
         st.write("**Your Machines:**")
         for i, machine in enumerate(st.session_state.machines):
-            machine_summary = f"• Machine {i+1}: {machine['type']}"
-            if machine['model']:
-                machine_summary += f" ({machine['model']})"
-            machine_summary += f" - Qty: {machine['quantity']}"
-            if machine['info']:
-                machine_summary += f" - {machine['info']}"
-            if machine.get('photo'):
-                machine_summary += " 📸"
-            st.write(machine_summary)
+            col1, col2, col3 = st.columns([3, 1, 1])
+            with col1:
+                machine_summary = f"• Machine {i+1}: {machine['type']}"
+                if machine['model']:
+                    machine_summary += f" ({machine['model']})"
+                machine_summary += f" - Qty: {machine['quantity']}"
+                if machine['info']:
+                    machine_summary += f" - {machine['info']}"
+                if machine.get('photo'):
+                    machine_summary += " 📸"
+                st.write(machine_summary)
+            with col2:
+                if st.button(f"Edit {i+1}", key=f"form_edit_{i}"):
+                    st.session_state.editing_machine = i
+                    st.rerun()
+            with col3:
+                if st.button(f"Remove {i+1}", key=f"form_remove_{i}"):
+                    st.session_state.machines.pop(i)
+                    st.rerun()
     else:
         st.markdown('<div class="stInfo">Click "Add Machine" to start adding your machines, or use the Magic button for common machines.</div>', unsafe_allow_html=True)
     notes = st.text_area(
