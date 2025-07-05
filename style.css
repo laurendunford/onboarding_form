@@ -1,0 +1,87 @@
+/* Custom styles for the onboarding app */
+
+/* Golden accent color for special elements */
+.golden-highlight {
+    color: #F1C232 !important;
+    font-weight: bold;
+}
+
+/* Success messages with golden accent */
+.stSuccess {
+    background-color: rgba(241, 194, 50, 0.1) !important;
+    border-left: 4px solid #F1C232 !important;
+    color: #F1C232 !important;
+}
+
+/* Info boxes with golden accent */
+.stInfo {
+    background-color: rgba(241, 194, 50, 0.1) !important;
+    border-left: 4px solid #F1C232 !important;
+}
+
+/* Custom button styling */
+.custom-button {
+    background: linear-gradient(135deg, #502DD5 0%, #F1C232 100%) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    color: white !important;
+    font-weight: bold !important;
+    padding: 10px 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+.custom-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(80, 45, 213, 0.3) !important;
+}
+
+/* Header styling */
+.main-header {
+    background: linear-gradient(135deg, #502DD5 0%, #F1C232 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+/* Card-like containers */
+.custom-card {
+    background-color: #4A5A6B !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    margin: 10px 0 !important;
+    border: 1px solid rgba(241, 194, 50, 0.2) !important;
+}
+
+/* Golden border for important sections */
+.golden-border {
+    border: 2px solid #F1C232 !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+}
+
+/* Photo upload area styling */
+.upload-area {
+    border: 2px dashed #F1C232 !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    text-align: center !important;
+    background-color: rgba(241, 194, 50, 0.05) !important;
+}
+
+/* Machine list styling */
+.machine-item {
+    background-color: #4A5A6B !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    margin: 8px 0 !important;
+    border-left: 4px solid #F1C232 !important;
+}
+
+/* Form styling */
+.custom-form {
+    background-color: #4A5A6B !important;
+    border-radius: 12px !important;
+    padding: 25px !important;
+    border: 1px solid rgba(241, 194, 50, 0.3) !important;
+} 

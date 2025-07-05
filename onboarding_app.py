@@ -1,15 +1,23 @@
 import streamlit as st
 
-st.title("Machine Onboarding Form")
+# Load custom CSS
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+st.markdown('<h1 class="main-header">Machine Onboarding Form</h1>', unsafe_allow_html=True)
 
 # Initialize session state for machines if not exists
 if 'machines' not in st.session_state:
     st.session_state.machines = []
 
 # Machine management buttons (outside the form)
-col1, col2 = st.columns(2)
+st.markdown("""
+### 🏭 Add Your Machines
+Add each machine you want to include in your onboarding. You can use the magic button to pre-fill common machines, or add them one by one.
+""")
+col1, col2 = st.columns([2, 1])
 with col1:
-    if st.button("🎯 Magic: Add Common Machines"):
+    if st.button("🎯 Magic: Add Common Machines", help="Quickly add a list of common machines to get started."):
         default_machines = [
             {"type": "Lathe", "model": "", "info": "", "quantity": 2},
             {"type": "Milling Machine", "model": "", "info": "", "quantity": 1},
@@ -19,11 +27,11 @@ with col1:
             {"type": "Welding Station", "model": "", "info": "", "quantity": 1}
         ]
         st.session_state.machines = default_machines
-        st.success("✨ Magic activated! Common machines added.")
+        st.markdown('<div class="stSuccess">✨ Magic activated! Common machines added.</div>', unsafe_allow_html=True)
         st.rerun()
-
 with col2:
-    if st.button("➕ Add Machine"):
+    st.markdown("<div style='height: 1.5em'></div>", unsafe_allow_html=True)
+    if st.button("➕ **Add a New Machine**", key="add_machine", help="Add a new machine to your list."):
         st.session_state.machines.append({"type": "", "model": "", "info": "", "quantity": 1})
         st.rerun()
 
@@ -126,7 +134,7 @@ with st.form(key="onboarding_form"):
                 machine_summary += " 📸"
             st.write(machine_summary)
     else:
-        st.info("Click 'Add Machine' to start adding your machines, or use the Magic button for common machines.")
+        st.markdown('<div class="stInfo">Click "Add Machine" to start adding your machines, or use the Magic button for common machines.</div>', unsafe_allow_html=True)
     notes = st.text_area(
         "Optional notes:",
         placeholder="Any additional information...",
@@ -158,7 +166,7 @@ with st.form(key="onboarding_form"):
             help="Upload any existing sketches, diagrams, or drawings of your production line layout."
         )
     elif layout_option == "I'll sketch it on a whiteboard":
-        st.info("🎨 Perfect! We'll have a whiteboard ready during your setup session for you to sketch your line layout.")
+        st.markdown('<div class="stInfo">🎨 Perfect! We\'ll have a whiteboard ready during your setup session for you to sketch your line layout.</div>', unsafe_allow_html=True)
     
     st.header("Contact Information")
     name = st.text_input("Your Name:")
@@ -176,7 +184,7 @@ with st.form(key="onboarding_form"):
     submit = st.form_submit_button("Submit")
 
 if submit:
-    st.success("Form submitted!")
+    st.markdown('<div class="stSuccess">🎉 Form submitted successfully!</div>', unsafe_allow_html=True)
     st.balloons()
     
     st.header("Here's the install plan we'll start building for you...")
