@@ -528,6 +528,7 @@ with st.form(key="onboarding_form"):
     teammate_name = ""
     teammate_email = ""
     if invite_teammate:
+        show_celebration()
         col1, col2 = st.columns(2)
         with col1:
             teammate_name = st.text_input("Teammate's Name", placeholder="Enter teammate's full name")
