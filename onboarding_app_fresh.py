@@ -367,6 +367,7 @@ with col2:
 with col3:
     if st.button("➕ Add Machine Manually", key="add_machine_form", help="Add a new machine manually to your list.", use_container_width=True):
         st.session_state.show_manual_form = True
+        show_celebration()
         st.rerun()
 
 # Update total machines count before displaying
